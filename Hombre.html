@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ropa para Hombre - Tienda de Ropa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+        nav {
+            background-color: #444;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        .product-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 20px;
+        }
+        .product-item {
+            background-color: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            margin: 15px;
+            padding: 20px;
+            width: 250px;
+            text-align: center;
+        }
+        .product-item img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .product-item h3 {
+            margin: 15px 0;
+            font-size: 18px;
+        }
+        .product-item p {
+            font-size: 14px;
+            color: #666;
+        }
+        .product-item button {
+            background-color: #ff9800;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .product-item button:hover {
+            background-color: #e68900;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Ropa para Hombre</h1>
+</header>
+
+<nav>
+    <a href="Intefaz.html">Inicio</a>
+    <a href="Hombre.html">Hombre</a>
+    <a href="Mujer.html">Mujer</a>
+    <a href="billetera.html">Billetera</a>
+    <a href="Carritocompras.html">Carrito</a> 
+</nav>
+
+<section class="product-grid">
+    <div class="product-item">
+        <img src="https://via.placeholder.com/250x250.png?text=Camisa+Hombre" alt="Camisa Hombre">
+        <h3>Camisa Casual</h3>
+        <p>Camisa de algodón, disponible en varios colores.</p>
+        <button onclick="agregarAlCarrito('Camisa Casual', 29.000)">Agregar al carrito</button>
+    </div>
+    <div class="product-item">
+        <img src="https://via.placeholder.com/250x250.png?text=Chaqueta+Hombre" alt="Chaqueta Hombre">
+        <h3>Chaqueta Deportiva</h3>
+        <p>Chaqueta resistente al agua, ideal para entrenamientos.</p>
+        <button onclick="agregarAlCarrito('Chaqueta Deportiva', 49.000)">Agregar al carrito</button>
+    </div>
+    <div class="product-item">
+        <img src="https://via.placeholder.com/250x250.png?text=Pantalon+Hombre" alt="Pantalón Hombre">
+        <h3>Pantalón de Vestir</h3>
+        <p>Pantalón elegante, disponible en tallas S, M, L.</p>
+        <button onclick="agregarAlCarrito('Pantalón de Vestir', 39.900)">Agregar al carrito</button>
+    </div>
+    <div class="product-item">
+        <img src="https://via.placeholder.com/250x250.png?text=Zapatos+Hombre" alt="Zapatos Hombre">
+        <h3>Zapatos de Cuero</h3>
+        <p>Zapatos formales de cuero, perfectos para oficina.</p>
+        <button onclick="agregarAlCarrito('Zapatos de Cuero', 69.000)">Agregar al carrito</button>
+    </div>
+</section>
+
+<script>
+    function agregarAlCarrito(nombreProducto, precioProducto) {
+        let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+        const producto = {
+            nombre: nombreProducto,
+            precio: precioProducto,
+            cantidad: 1
+        };
+
+        
+        const productoExistente = carrito.find(item => item.nombre === nombreProducto);
+        if (productoExistente) {
+            productoExistente.cantidad += 1;
+        } else {
+            carrito.push(producto); 
+        }
+
+        
+        localStorage.setItem('carrito', JSON.stringify(carrito));
+
+        alert(`${nombreProducto} ha sido agregado al carrito.`);
+    }
+</script>
+
+</body>
+</html>
